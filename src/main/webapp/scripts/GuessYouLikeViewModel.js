@@ -12,7 +12,7 @@ $(function()
             // 刷新推荐列表
             refresh: function()
             {
-                // 获取随机电子书
+                // 获取搜索建议
                 queryBooks(
                 {
                     random: 4

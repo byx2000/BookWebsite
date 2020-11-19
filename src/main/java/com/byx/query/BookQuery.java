@@ -2,6 +2,9 @@ package com.byx.query;
 
 import com.byx.util.DateUtils;
 
+/**
+ * 电子书查询条件封装类
+ */
 public class BookQuery extends Query
 {
     private Integer bookId = null;

@@ -5,7 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * 封装sql查询子句
+ * 查询条件封装类基类
+ * <p>该类负责封装各种查询条件、生成sql字符串和对应参数</p>
  */
 public class Query
 {

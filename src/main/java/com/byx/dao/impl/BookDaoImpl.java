@@ -15,9 +15,10 @@ public class BookDaoImpl extends BaseDao implements IBookDao
     @Override
     public int count(BookQuery query)
     {
-        return JDBCTemplate.query("SELECT COUNT(*) AS cnt FROM books " + query.getQueryString(),
+        Integer cnt = JDBCTemplate.query("SELECT COUNT(*) AS cnt FROM books " + query.getQueryString(),
                 new ResultSetToInt(),
                 query.getParameters().toArray());
+        return cnt == null ? -1 : cnt;
     }
 
     @Override
@@ -26,5 +27,13 @@ public class BookDaoImpl extends BaseDao implements IBookDao
         return JDBCTemplate.query("SELECT * FROM books " + query.getQueryString(),
                 new ResultSetToList<>(Book.class),
                 query.getParameters().toArray());
+    }
+
+    @Override
+    public List<Book> getSearchSuggestion(String keyword, int count)
+    {
+        return JDBCTemplate.query("SELECT * FROM (SELECT * FROM books ORDER BY (likeCount + dislikeCount)  DESC LIMIT ?) ORDER BY RANDOM() LIMIT ?",
+                new ResultSetToList<>(Book.class),
+                2 * count, count);
     }
 }

@@ -19,11 +19,48 @@ public class BookServlet extends BaseServlet
 {
     private final IBookService bookService = new BookServiceImpl(new BookDaoImpl());
 
+    /**
+     * 查询电子书
+     * @param request
+     * @param response
+     * @throws Exception
+     */
     public void query(HttpServletRequest request, HttpServletResponse response) throws Exception
     {
         BookQuery bookQuery = new BookQuery();
         BeanUtils.populate(bookQuery, request.getParameterMap());
         ResultInfo resultInfo = bookService.query(bookQuery);
+        responseResult(response, resultInfo);
+    }
+
+    /**
+     * 搜索建议
+     * @param request
+     * @param response
+     * @throws Exception
+     */
+    public void searchSuggestion(HttpServletRequest request, HttpServletResponse response) throws Exception
+    {
+        String keyword = request.getParameter("keyword");
+        if (keyword == null)
+        {
+            responseFailResult(response, "参数错误");
+            return;
+        }
+
+        int count;
+        try
+        {
+            count = Integer.parseInt(request.getParameter("count"));
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            responseFailResult(response, "参数错误");
+            return;
+        }
+
+        ResultInfo resultInfo = bookService.getSearchSuggestion(keyword, count);
         responseResult(response, resultInfo);
     }
 }

@@ -9,7 +9,7 @@ function request(url, parameters, success, fail = e => alert(e))
     });
 }
 
-// 查询电子书分类
+// 查询分类
 function queryCategories(conditions, success, fail)
 {
     request("category/query", conditions, success, fail);
@@ -19,6 +19,12 @@ function queryCategories(conditions, success, fail)
 function queryBooks(conditions, success, fail)
 {
     request("book/query", conditions, success, fail);
+}
+
+// 获取电子书搜索建议
+function getSearchSuggestion(keyword, count, success, fail)
+{
+    request("book/searchSuggestion", { keyword: keyword, count: count }, success, fail);
 }
 
 // 登录
