@@ -9,7 +9,8 @@ $(function()
             book: null,
             category: null,
             comments: [],
-            users: []
+            users: [],
+            recommends: []
         },
         methods:
         {
@@ -62,6 +63,20 @@ $(function()
                                 }
                             );
                         }
+
+                        // 获取同类推荐列表
+                        queryBooks(
+                            {
+                                categoryId: books[0].categoryId,
+                                orderBy: "heat",
+                                pageSize: comments.length === 0 ? 4 : 6,
+                                currentPage: 1
+                            },
+                            function(pageBean)
+                            {
+                                app.recommends = pageBean.data;
+                            }
+                        );
                     }
                 );
             });
