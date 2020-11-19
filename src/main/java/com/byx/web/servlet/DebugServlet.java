@@ -1,11 +1,14 @@
 package com.byx.web.servlet;
 
 import com.byx.dao.ICategoryDao;
+import com.byx.dao.ICommentDao;
 import com.byx.dao.impl.BookDaoImpl;
 import com.byx.dao.impl.CategoryDaoImpl;
+import com.byx.dao.impl.CommentDaoImpl;
 import com.byx.domain.*;
 import com.byx.query.BookQuery;
 import com.byx.query.CategoryQuery;
+import com.byx.query.CommentQuery;
 import com.byx.service.IBookService;
 import com.byx.service.impl.BookServiceImpl;
 import org.apache.commons.dbcp2.BasicDataSource;
@@ -22,32 +25,17 @@ import java.util.List;
 @WebServlet("/debug")
 public class DebugServlet extends BaseServlet
 {
-    private DataSource getDataSource()
-    {
-        BasicDataSource ds = new BasicDataSource();
-        ds.setDriverClassName("org.sqlite.JDBC");
-        ds.setUrl("jdbc:sqlite:D:/Programs/项目-2020/JavaWeb/BookWebsite/test.db");
-        return ds;
-    }
-
     public void debug(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        try
+        ICommentDao dao = new CommentDaoImpl();
+        CommentQuery query = new CommentQuery();
+        //query.setBookId(1);
+        query.setUserId(3);
+        List<Comment> comments = dao.query(query);
+        System.out.println(comments.size());
+        for (Comment c : comments)
         {
-            DataSource ds = getDataSource();
-            Connection conn = ds.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM books");
-            ResultSet rs = stmt.executeQuery();
-            rs.next();
-            for (int i = 0; i < 10; ++i)
-            {
-                System.out.println(rs.getObject("name"));
-                rs.next();
-            }
-        }
-        catch (SQLException throwables)
-        {
-            throwables.printStackTrace();
+            System.out.println(c);
         }
     }
 }

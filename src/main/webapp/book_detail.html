@@ -279,6 +279,132 @@
                 background-repeat: no-repeat;
                 background-position: center center;
             }
+
+            .comment_and_recommend
+            {
+                margin-top: 40px;
+                display: flex;
+            }
+
+            #comment_list
+            {
+                flex: 1;
+                background-color: #fff;
+                padding: 0 40px;
+            }
+
+            #similar_recommend
+            {
+                width: 305px;
+                background-color:#fafafa;
+                border-left: 1px solid #f0f0f0;
+            }
+
+            #comment_list .header
+            {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                /*padding: 34px 40px 34px 40px;*/
+                padding: 34px 0;
+                border-bottom: 1px solid #f0f0f0;
+            }
+
+            #comment_list .header span:first-child
+            {
+                font-size: 16px;
+                color: #212121;
+            }
+
+            #comment_list .header span:nth-child(2)
+            {
+                margin: 0 8px;
+                font-size: 16px;
+                color: #f0f0f0;
+            }
+
+            #comment_list .header span:last-child
+            {
+                font-size: 12px;
+                color: #919191;
+            }
+
+            #comment_list .header a
+            {
+                background-color: #8bc34a;
+                font-size: 12px;
+                color: white;
+                padding: 5px 10px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 3px;
+            }
+
+            #comment_list .header a::before
+            {
+                content: "";
+                display: inline-block;
+                width: 16px;
+                height: 16px;
+                margin-right: 5px;
+                background: url(./images/edit.png);
+                background-size: 100% 100%;
+            }
+
+            #comment_list .header a:hover
+            {
+                cursor: pointer;
+            }
+
+            .comment_item
+            {
+                display: flex;
+                margin: 32px 0;
+                /*padding: 0 40px;*/
+            }
+
+            .avatar
+            {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+            }
+
+            .comment_detail
+            {
+                margin-left: 30px;
+                flex: 1;
+                width: 0;
+                border-bottom: 1px solid #f0f0f0;
+            }
+
+            .username
+            {
+                font-size: 14px;
+                color: #6b6b6b;
+            }
+
+            .time
+            {
+                font-size: 12px;
+                color: #9e9e9e;
+            }
+
+            .username_and_time
+            {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 11px;
+            }
+
+            .content
+            {
+                font-size: 14px;
+                color: #9e9e9e;
+                padding-top: 7px;
+                margin-bottom: 13px;
+            }
         </style>
     </head>
     <body>
@@ -326,6 +452,53 @@
                         <a class="read_link" href="">阅读</a>
                         <a class="favorite_link" href="">收藏</a>
                     </div>
+                </div>
+            </div>
+            <div class="comment_and_recommend">
+                <!--评论列表-->
+                <div id="comment_list">
+                    <div class="header">
+                        <div>
+                            <span>评论区</span>
+                            <span>|</span>
+                            <span> 共3827条评论</span>
+                        </div>
+                        <a>我来说两句</a>
+                    </div>
+                    <div class="comment_item">
+                        <img class="avatar" src="./upload/avatar/1.jpg"/>
+                        <div class="comment_detail">
+                            <div class="username_and_time">
+                                <p class="username">小呆猫</p>
+                                <p class="time">2020-09-11</p>
+                            </div>
+                            <p class="content">叫人不要误会，干的却是净让人误会的事，感觉看这部小说就是纯属找虐找刺激</p>
+                        </div>
+                    </div>
+                    <div class="comment_item">
+                        <img class="avatar" src="./upload/avatar/1.jpg"/>
+                        <div class="comment_detail">
+                            <div class="username_and_time">
+                                <p class="username">小呆猫</p>
+                                <p class="time">2020-09-11</p>
+                            </div>
+                            <p class="content">世间并不是所以好人都会有好报，善良的人也会被伤害，而坏人也不是都有报应，相反，他们可能会活的很好。我并不会很想做个好人，有时坏人也不错</p>
+                        </div>
+                    </div>
+                    <div class="comment_item">
+                        <img class="avatar" src="./upload/avatar/1.jpg"/>
+                        <div class="comment_detail">
+                            <div class="username_and_time">
+                                <p class="username">小呆猫</p>
+                                <p class="time">2020-09-11</p>
+                            </div>
+                            <p class="content">宋七月要的从来只是单纯的爱，可以在面临选择时的不抛弃。来自聂勋和宋氏一家的亲人之爱；来自莫征衍的爱人之爱。她的风是因哀莫大于心死，因为宋七月认为他们在面临所有选择的时候放弃的人都是她，一次次失望把她逼上了绝路。是宋向晚在她们姐妹之情和苏赫之间选择苏赫，是苏赫说苏向晚我喜欢你的时候，是宋连衡要她去联姻的时候，是宋槿之因为君姨之死说再也不会原谅她的时候，是莫征衍在法庭上为保程青柠作假供的时候，是她认为聂勋为了保程青柠而不告诉她身份的时候，太多太多了。因为在她的世界里她认为他们都抛弃了她，所以她疯了。</p>
+                        </div>
+                    </div>
+                </div>
+                <!--同类推荐-->
+                <div id="similar_recommend">
+                    同类推荐
                 </div>
             </div>
         </div>
