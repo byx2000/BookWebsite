@@ -43,3 +43,15 @@ function logout(success, fail)
 {
     request("user/logout", {}, success, fail);
 }
+
+// 查询用户
+function queryUsers(conditions, success, fail)
+{
+    request("user/query", conditions, success, fail);
+}
+
+// 查询评论
+function queryComments(conditions, success, fail)
+{
+    request("comment/query", conditions, success, fail);
+}

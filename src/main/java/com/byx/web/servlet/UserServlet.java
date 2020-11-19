@@ -3,8 +3,10 @@ package com.byx.web.servlet;
 import com.byx.dao.impl.UserDaoImpl;
 import com.byx.domain.ResultInfo;
 import com.byx.domain.User;
+import com.byx.query.UserQuery;
 import com.byx.service.IUserService;
 import com.byx.service.impl.UserServiceImpl;
+import com.byx.util.BeanUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -76,5 +78,20 @@ public class UserServlet extends BaseServlet
     {
         request.getSession().invalidate();
         responseSuccessResult(response, null);
+    }
+
+    /**
+     * 查询
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
+    public void query(HttpServletRequest request, HttpServletResponse response) throws Exception
+    {
+        UserQuery userQuery = new UserQuery();
+        BeanUtils.populate(userQuery, request.getParameterMap());
+        ResultInfo resultInfo = userService.query(userQuery);
+        responseResult(response, resultInfo);
     }
 }

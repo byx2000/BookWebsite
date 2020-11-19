@@ -3,11 +3,13 @@ $(function()
     // 加载vue组件
     let app = new Vue(
     {
-        el: "#book_info",
+        el: "#content",
         data: 
         {
             book: null,
-            category: null
+            category: null,
+            comments: [],
+            users: []
         },
         methods:
         {
@@ -26,15 +28,42 @@ $(function()
             function(books)
             {
                 app.book = books[0];
+
                 // 获取类别信息
                 queryCategories(
-                {
-                    categoryId: app.book.categoryId
-                },
-                function(categories)
-                {
-                    app.category = categories[0];
-                });
+                    {
+                        categoryId: app.book.categoryId
+                    },
+                    function(categories)
+                    {
+                        app.category = categories[0];
+                    }
+                );
+
+                // 获取评论
+                queryComments(
+                    {
+                        bookId: books[0].id
+                    },
+                    function(comments)
+                    {
+                        app.comments = comments;
+
+                        for (let comment of comments)
+                        {
+                            // 获取用户信息
+                            queryUsers(
+                                {
+                                    userId: comment.userId
+                                },
+                                function(users)
+                                {
+                                    app.users.push(users[0]);
+                                }
+                            );
+                        }
+                    }
+                );
             });
         }
     });

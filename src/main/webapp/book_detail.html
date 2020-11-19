@@ -11,7 +11,7 @@
         <script src="./scripts/parameter.js"></script>
         <script src="./scripts/BookDetailViewModel.js"></script>
         <style>
-            #book_info
+            .book_info
             {
                 background-color: white;
                 display: flex;
@@ -286,21 +286,21 @@
                 display: flex;
             }
 
-            #comment_list
+            .comment_list
             {
                 flex: 1;
                 background-color: #fff;
                 padding: 0 40px;
             }
 
-            #similar_recommend
+            .similar_recommend
             {
                 width: 305px;
                 background-color:#fafafa;
                 border-left: 1px solid #f0f0f0;
             }
 
-            #comment_list .header
+            .comment_list .header
             {
                 display: flex;
                 justify-content: space-between;
@@ -310,26 +310,26 @@
                 border-bottom: 1px solid #f0f0f0;
             }
 
-            #comment_list .header span:first-child
+            .comment_list .header span:first-child
             {
                 font-size: 16px;
                 color: #212121;
             }
 
-            #comment_list .header span:nth-child(2)
+            .comment_list .header span:nth-child(2)
             {
                 margin: 0 8px;
                 font-size: 16px;
                 color: #f0f0f0;
             }
 
-            #comment_list .header span:last-child
+            .comment_list .header span:last-child
             {
                 font-size: 12px;
                 color: #919191;
             }
 
-            #comment_list .header a
+            .comment_list .header a
             {
                 background-color: #8bc34a;
                 font-size: 12px;
@@ -341,7 +341,7 @@
                 border-radius: 3px;
             }
 
-            #comment_list .header a::before
+            .comment_list .header a::before
             {
                 content: "";
                 display: inline-block;
@@ -352,7 +352,7 @@
                 background-size: 100% 100%;
             }
 
-            #comment_list .header a:hover
+            .comment_list .header a:hover
             {
                 cursor: pointer;
             }
@@ -414,7 +414,7 @@
         <!--内容区-->
         <div id="content">
             <!--书籍详情-->
-            <div id="book_info" v-if="book !== null && category !== null">
+            <div class="book_info" v-if="book !== null && category !== null">
                 <!--封面-->
                 <div class="book_cover">
                     <!--类别标签-->
@@ -454,50 +454,31 @@
                     </div>
                 </div>
             </div>
+            <!--评论和推荐-->
             <div class="comment_and_recommend">
                 <!--评论列表-->
-                <div id="comment_list">
+                <div class="comment_list">
                     <div class="header">
                         <div>
                             <span>评论区</span>
                             <span>|</span>
-                            <span> 共3827条评论</span>
+                            <span>共{{comments.length}}条评论</span>
                         </div>
                         <a>我来说两句</a>
                     </div>
-                    <div class="comment_item">
-                        <img class="avatar" src="./upload/avatar/1.jpg"/>
+                    <div v-if="comments.length > 0 && users.length > 0" v-for="(comment, index) in comments" class="comment_item">
+                        <img v-if="users[index] !== undefined" class="avatar" v-bind:src="'./upload/avatar/' + users[index].id + '.jpg'"/>
                         <div class="comment_detail">
                             <div class="username_and_time">
-                                <p class="username">小呆猫</p>
-                                <p class="time">2020-09-11</p>
+                                <p v-if="users[index] !== undefined" class="username">{{users[index].username}}</p>
+                                <p class="time">{{comment.time.substring(0, 11)}}</p>
                             </div>
-                            <p class="content">叫人不要误会，干的却是净让人误会的事，感觉看这部小说就是纯属找虐找刺激</p>
-                        </div>
-                    </div>
-                    <div class="comment_item">
-                        <img class="avatar" src="./upload/avatar/1.jpg"/>
-                        <div class="comment_detail">
-                            <div class="username_and_time">
-                                <p class="username">小呆猫</p>
-                                <p class="time">2020-09-11</p>
-                            </div>
-                            <p class="content">世间并不是所以好人都会有好报，善良的人也会被伤害，而坏人也不是都有报应，相反，他们可能会活的很好。我并不会很想做个好人，有时坏人也不错</p>
-                        </div>
-                    </div>
-                    <div class="comment_item">
-                        <img class="avatar" src="./upload/avatar/1.jpg"/>
-                        <div class="comment_detail">
-                            <div class="username_and_time">
-                                <p class="username">小呆猫</p>
-                                <p class="time">2020-09-11</p>
-                            </div>
-                            <p class="content">宋七月要的从来只是单纯的爱，可以在面临选择时的不抛弃。来自聂勋和宋氏一家的亲人之爱；来自莫征衍的爱人之爱。她的风是因哀莫大于心死，因为宋七月认为他们在面临所有选择的时候放弃的人都是她，一次次失望把她逼上了绝路。是宋向晚在她们姐妹之情和苏赫之间选择苏赫，是苏赫说苏向晚我喜欢你的时候，是宋连衡要她去联姻的时候，是宋槿之因为君姨之死说再也不会原谅她的时候，是莫征衍在法庭上为保程青柠作假供的时候，是她认为聂勋为了保程青柠而不告诉她身份的时候，太多太多了。因为在她的世界里她认为他们都抛弃了她，所以她疯了。</p>
+                            <p class="content">{{comment.content}}</p>
                         </div>
                     </div>
                 </div>
                 <!--同类推荐-->
-                <div id="similar_recommend">
+                <div class="similar_recommend">
                     同类推荐
                 </div>
             </div>
