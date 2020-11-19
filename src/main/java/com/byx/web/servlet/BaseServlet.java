@@ -1,15 +1,13 @@
 package com.byx.web.servlet;
 
-import java.io.IOException;
-import java.lang.reflect.Method;
+import com.byx.domain.ResultInfo;
+import com.byx.util.JsonUtils;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.byx.domain.ResultInfo;
-import com.byx.util.JsonUtils;
+import java.io.IOException;
+import java.lang.reflect.Method;
 
 /**
  * 所有Servlet的基类
@@ -17,7 +15,7 @@ import com.byx.util.JsonUtils;
 public abstract class BaseServlet extends HttpServlet
 {
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws IOException
 	{
 		// 获取请求uri
 		String uri = request.getRequestURI();

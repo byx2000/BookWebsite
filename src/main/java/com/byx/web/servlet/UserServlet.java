@@ -8,11 +8,9 @@ import com.byx.service.IUserService;
 import com.byx.service.impl.UserServiceImpl;
 import com.byx.util.BeanUtils;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 /**
  * 用户相关接口
@@ -22,14 +20,7 @@ public class UserServlet extends BaseServlet
 {
     private final IUserService userService = new UserServiceImpl(new UserDaoImpl());
 
-    /**
-     * 登录
-     * @param request
-     * @param response
-     * @throws ServletException
-     * @throws IOException
-     */
-    public void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+    public void login(HttpServletRequest request, HttpServletResponse response) throws Exception
     {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
@@ -48,14 +39,7 @@ public class UserServlet extends BaseServlet
         responseResult(response, resultInfo);
     }
 
-    /**
-     * 获取当前登录用户
-     * @param request
-     * @param response
-     * @throws ServletException
-     * @throws IOException
-     */
-    public void current(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+    public void current(HttpServletRequest request, HttpServletResponse response) throws Exception
     {
         User user = (User)request.getSession().getAttribute("user");
         if (user == null)
@@ -67,26 +51,12 @@ public class UserServlet extends BaseServlet
         responseSuccessResult(response, user);
     }
 
-    /**
-     * 注销
-     * @param request
-     * @param response
-     * @throws ServletException
-     * @throws IOException
-     */
-    public void logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+    public void logout(HttpServletRequest request, HttpServletResponse response) throws Exception
     {
         request.getSession().invalidate();
         responseSuccessResult(response, null);
     }
 
-    /**
-     * 查询
-     * @param request
-     * @param response
-     * @throws ServletException
-     * @throws IOException
-     */
     public void query(HttpServletRequest request, HttpServletResponse response) throws Exception
     {
         UserQuery userQuery = new UserQuery();

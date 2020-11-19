@@ -7,11 +7,9 @@ import com.byx.service.ICommentService;
 import com.byx.service.impl.CommentServiceImpl;
 import com.byx.util.BeanUtils;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 /**
  * 评论相关接口
@@ -21,7 +19,7 @@ public class CommentServlet extends BaseServlet
 {
     private final ICommentService commentService = new CommentServiceImpl(new CommentDaoImpl());
 
-    public void query(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+    public void query(HttpServletRequest request, HttpServletResponse response) throws Exception
     {
         CommentQuery commentQuery = new CommentQuery();
         BeanUtils.populate(commentQuery, request.getParameterMap());

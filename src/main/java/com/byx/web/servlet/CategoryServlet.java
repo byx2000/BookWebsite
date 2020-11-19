@@ -7,11 +7,9 @@ import com.byx.service.ICategoryService;
 import com.byx.service.impl.CategoryServiceImpl;
 import com.byx.util.BeanUtils;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 /**
  * 电子书类型相关接口
@@ -21,7 +19,7 @@ public class CategoryServlet extends BaseServlet
 {
     private final ICategoryService categoryService = new CategoryServiceImpl(new CategoryDaoImpl());
 
-    public void query(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+    public void query(HttpServletRequest request, HttpServletResponse response) throws Exception
     {
         CategoryQuery categoryQuery = new CategoryQuery();
         BeanUtils.populate(categoryQuery, request.getParameterMap());
