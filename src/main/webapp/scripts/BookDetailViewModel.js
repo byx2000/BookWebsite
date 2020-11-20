@@ -65,16 +65,12 @@ $(function()
                         }
 
                         // 获取同类推荐列表
-                        queryBooks(
+                        getSimilarRecommend(
+                            books[0].categoryId, 
+                            comments.length === 0 ? 4 : 6,
+                            function(books)
                             {
-                                categoryId: books[0].categoryId,
-                                orderBy: "heat",
-                                pageSize: comments.length === 0 ? 4 : 6,
-                                currentPage: 1
-                            },
-                            function(pageBean)
-                            {
-                                app.recommends = pageBean.data;
+                                app.recommends = books;
                             }
                         );
                     }

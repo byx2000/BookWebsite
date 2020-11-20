@@ -32,8 +32,16 @@ public class BookDaoImpl extends BaseDao implements IBookDao
     @Override
     public List<Book> getSearchSuggestion(String keyword, int count)
     {
-        return JDBCTemplate.query("SELECT * FROM (SELECT * FROM books ORDER BY (likeCount + dislikeCount)  DESC LIMIT ?) ORDER BY RANDOM() LIMIT ?",
+        return JDBCTemplate.query("SELECT * FROM (SELECT * FROM books ORDER BY heat DESC LIMIT ?) ORDER BY RANDOM() LIMIT ?",
                 new ResultSetToList<>(Book.class),
                 2 * count, count);
+    }
+
+    @Override
+    public List<Book> getSimilarRecommend(int categoryId, int count)
+    {
+        return JDBCTemplate.query("SELECT * FROM books WHERE categoryId == ? ORDER BY score DESC LIMIT ?",
+                new ResultSetToList<>(Book.class),
+                categoryId, count);
     }
 }

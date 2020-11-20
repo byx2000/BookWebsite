@@ -11,6 +11,8 @@ public class Book
     private int wordCount;
     private int likeCount;
     private int dislikeCount;
+    private int heat;
+    private double score;
 
     public Book() {}
 
@@ -117,35 +119,23 @@ public class Book
         this.dislikeCount = dislikeCount;
     }
 
-    public double getScore()
-    {
-        if (likeCount + dislikeCount == 0) return 1.0;
-        return 1.0 + (double)likeCount / (likeCount + dislikeCount) * 9.0;
-    }
-
     public int getHeat()
     {
-        return likeCount + dislikeCount;
+        return heat;
     }
 
-    @Override
-    public String toString()
+    public void setHeat(int heat)
     {
-        return "Book{" +
-                "id=" + id +
-                ", categoryId=" + categoryId +
-                ", name='" + name + '\'' +
-                ", author='" + author + '\'' +
-                ", description='" + description + '\'' +
-                ", updateTime=" + updateTime +
-                ", wordCount=" + wordCount +
-                ", likeCount=" + likeCount +
-                ", dislikeCount=" + dislikeCount +
-                '}';
+        this.heat = heat;
     }
 
-    public Book clone()
+    public double getScore()
     {
-        return new Book(id, categoryId, name, author, description, updateTime, wordCount, likeCount, dislikeCount);
+        return score;
+    }
+
+    public void setScore(double score)
+    {
+        this.score = score;
     }
 }

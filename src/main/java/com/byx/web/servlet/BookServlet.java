@@ -63,4 +63,29 @@ public class BookServlet extends BaseServlet
         ResultInfo resultInfo = bookService.getSearchSuggestion(keyword, count);
         responseResult(response, resultInfo);
     }
+
+    /**
+     * 同类推荐
+     * @param request
+     * @param response
+     * @throws Exception
+     */
+    public void similarRecommend(HttpServletRequest request, HttpServletResponse response) throws Exception
+    {
+        int categoryId, count;
+        try
+        {
+            categoryId = Integer.parseInt(request.getParameter("categoryId"));
+            count = Integer.parseInt(request.getParameter("count"));
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            responseFailResult(response, "参数错误");
+            return;
+        }
+
+        ResultInfo resultInfo = bookService.getSimilarRecommend(categoryId, count);
+        responseResult(response, resultInfo);
+    }
 }

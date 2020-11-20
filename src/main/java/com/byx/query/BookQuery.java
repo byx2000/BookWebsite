@@ -130,10 +130,10 @@ public class BookQuery extends Query
                     addOrderCondition("wordCount DESC");
                     break;
                 case "heat": // 按热度排序
-                    addOrderCondition("(likeCount + dislikeCount) DESC");
+                    addOrderCondition("heat DESC");
                     break;
                 case "score": // 按得分排序
-                    addOrderCondition("CASE WHEN likeCount + dislikeCount == 0 THEN 1.0 ELSE likeCount * 1.0 / (likeCount + dislikeCount) END DESC");
+                    addOrderCondition("score DESC");
                     break;
             }
         }

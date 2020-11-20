@@ -63,4 +63,12 @@ public class BookServiceImpl implements IBookService
         if (books == null) return ResultInfo.fail("服务器内部错误");
         return ResultInfo.success(books);
     }
+
+    @Override
+    public ResultInfo getSimilarRecommend(int categoryId, int count)
+    {
+        List<Book> books = bookDao.getSimilarRecommend(categoryId, count);
+        if (books == null) return ResultInfo.fail("服务器内部错误");
+        return ResultInfo.success(books);
+    }
 }
