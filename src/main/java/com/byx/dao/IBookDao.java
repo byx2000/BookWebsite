@@ -25,6 +25,13 @@ public interface IBookDao
     List<Book> query(BookQuery query);
 
     /**
+     * 获取指定数量的随机电子书
+     * @param count 数量
+     * @return 电子书列表
+     */
+    List<Book> getRandomBooks(int count);
+
+    /**
      * 搜索建议
      * @param keyword 搜索关键字
      * @param count 数量

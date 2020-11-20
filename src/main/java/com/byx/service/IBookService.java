@@ -13,6 +13,13 @@ public interface IBookService
     ResultInfo query(BookQuery query);
 
     /**
+     * 获取指定数量的随机电子书
+     * @param count 数量
+     * @return 返回客户端的结果
+     */
+    ResultInfo getRandomBooks(int count);
+
+    /**
      * 搜索建议
      * @param keyword 搜索关键词
      * @param count 建议条数
@@ -24,7 +31,7 @@ public interface IBookService
      * 同类推荐
      * @param categoryId 类别id
      * @param count 数量
-     * @return 推荐列表
+     * @return 返回客户端的结果
      */
     ResultInfo getSimilarRecommend(int categoryId, int count);
 }

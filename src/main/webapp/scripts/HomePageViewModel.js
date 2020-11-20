@@ -26,14 +26,11 @@ $(function()
         mounted: function()
         {
             // 随机获取4本电子书
-            queryBooks(
-            {
-                random: 4
-            },
-            function(books)
-            {
-                app_banner.books = books;
-            }
+            randomBooks(4,
+                function(books)
+                {
+                    app_banner.books = books;
+                }
             );
         }
     });
@@ -74,16 +71,12 @@ $(function()
                     });
 
                     // 获取每个类别的随机6本电子书
-                    queryBooks(
-                    {
-                        categoryId: c.id,
-                        random: 6
-                    },
-                    function(books)
-                    {
-                        //alert(JSON.stringify(books));
-                        app_category_random.randomBooks.push(books);
-                    });
+                    randomBooks(6,
+                        function(books)
+                        {
+                            app_category_random.randomBooks.push(books);
+                        }
+                    );
                 }
             });
         }

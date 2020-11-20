@@ -13,7 +13,6 @@ public class BookQuery extends Query
     private String keyword = null;
     private Integer pageSize = null;
     private Integer currentPage = null;
-    private Integer random = null;
     private String orderBy = null;
 
     public Integer getBookId()
@@ -76,16 +75,6 @@ public class BookQuery extends Query
         this.currentPage = currentPage;
     }
 
-    public Integer getRandom()
-    {
-        return random;
-    }
-
-    public void setRandom(Integer random)
-    {
-        this.random = random;
-    }
-
     public String getOrderBy()
     {
         return orderBy;
@@ -138,13 +127,8 @@ public class BookQuery extends Query
             }
         }
 
-        if (!queryByPage() && random != null)
-        {
-            addOrderCondition("RANDOM()");
-            addLimit(random);
-        }
-
-        if (random == null && queryByPage())
+        // 分页
+        if (queryByPage())
         {
             addLimit(pageSize);
             addOffset(pageSize * (currentPage - 1));

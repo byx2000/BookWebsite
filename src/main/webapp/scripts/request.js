@@ -21,6 +21,12 @@ function queryBooks(conditions, success, fail)
     request("book/query", conditions, success, fail);
 }
 
+// 获取随机电子书
+function randomBooks(count, success, fail)
+{
+    request("book/random", { count: count }, success, fail);
+}
+
 // 获取电子书搜索建议
 function getSearchSuggestion(keyword, count, success, fail)
 {

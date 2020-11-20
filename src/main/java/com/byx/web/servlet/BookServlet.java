@@ -34,6 +34,30 @@ public class BookServlet extends BaseServlet
     }
 
     /**
+     * 获取随机电子书
+     * @param request
+     * @param response
+     * @throws Exception
+     */
+    public void random(HttpServletRequest request, HttpServletResponse response) throws Exception
+    {
+        int count;
+        try
+        {
+            count = Integer.parseInt(request.getParameter("count"));
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            responseFailResult(response, "参数错误");
+            return;
+        }
+
+        ResultInfo resultInfo = bookService.getRandomBooks(count);
+        responseResult(response, resultInfo);
+    }
+
+    /**
      * 搜索建议
      * @param request
      * @param response

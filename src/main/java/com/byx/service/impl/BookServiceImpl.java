@@ -57,6 +57,14 @@ public class BookServiceImpl implements IBookService
     }
 
     @Override
+    public ResultInfo getRandomBooks(int count)
+    {
+        List<Book> books = bookDao.getRandomBooks(count);
+        if (books == null) return ResultInfo.fail("服务器内部错误");
+        return ResultInfo.success(books);
+    }
+
+    @Override
     public ResultInfo getSearchSuggestion(String keyword, int count)
     {
         List<Book> books = bookDao.getSearchSuggestion(keyword, count);
