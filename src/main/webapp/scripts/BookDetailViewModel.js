@@ -14,7 +14,13 @@ $(function()
         },
         methods:
         {
+            addComment: function()
+            {
+                alert("功能未实现");
 
+                // 添加评论
+                //saveComment(this.book.id, "abcde", function(){});
+            }
         },
         mounted: function()
         {

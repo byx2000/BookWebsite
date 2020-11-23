@@ -20,4 +20,11 @@ public class CommentDaoImpl implements ICommentDao
                 new ResultSetToList<>(Comment.class),
                 query.getParameters().toArray());
     }
+
+    @Override
+    public int save(Comment comment)
+    {
+        return JDBCTemplate.update("INSERT INTO comments (bookId, userId, content, time) VALUES (?, ?, ?, ?)",
+                comment.getBookId(), comment.getUserId(), comment.getContent(), comment.getTime());
+    }
 }

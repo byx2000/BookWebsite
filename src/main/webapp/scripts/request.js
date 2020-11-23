@@ -73,3 +73,9 @@ function queryComments(conditions, success, fail)
 {
     request("comment/query", conditions, success, fail);
 }
+
+// 添加评论
+function saveComment(bookId, content, success, fail)
+{
+    request("comment/save", { bookId: bookId, content: content }, success, fail);
+}

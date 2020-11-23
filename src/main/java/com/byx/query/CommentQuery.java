@@ -36,5 +36,7 @@ public class CommentQuery extends Query
 
         if (userId != null)
             addWhereCondition("userId == ?", userId);
+
+        addOrderCondition("time DESC");
     }
 }

@@ -588,7 +588,7 @@
                             <span>|</span>
                             <span>共{{comments.length}}条评论</span>
                         </div>
-                        <a>我来说两句</a>
+                        <a v-on:click="addComment">我来说两句</a>
                     </div>
                     <!--评论列表项-->
                     <div v-if="comments.length > 0 && users.length > 0" v-for="(comment, index) in comments" class="comment_item">
