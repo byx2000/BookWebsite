@@ -10,16 +10,26 @@ $(function()
             category: null,
             comments: [],
             users: [],
-            recommends: []
+            recommends: [],
+            commentText: ""
         },
         methods:
         {
             addComment: function()
             {
-                alert("功能未实现");
+                if (this.commentText.trim() === "")
+                {
+                    alert("评论不能为空！");
+                    return;
+                }
 
                 // 添加评论
-                //saveComment(this.book.id, "abcde", function(){});
+                saveComment(this.book.id, this.commentText, 
+                    function()
+                    {
+                        location.reload();
+                    }
+                );
             }
         },
         mounted: function()

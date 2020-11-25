@@ -529,6 +529,76 @@
                 color: #9e9e9e;
                 margin-top: 15px;
             }
+
+            .add_comment
+            {
+                margin-top: 34px;
+                margin-bottom: 34px;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .add_comment p
+            {
+                font-size: 16px;
+                display: flex;
+                align-items: center;
+            }
+
+            .add_comment p::before
+            {
+                content: "";
+                display: inline-block;
+                width: 23px;
+                height: 23px;
+                margin-right: 5px;
+                background: url(./images/comment.png);
+                background-size: 100% 100%;
+            }
+
+            .add_comment .edit
+            {
+                width: 100%;
+                height: 100px;
+                resize: none;
+                border: 1px solid #f0f0f0;
+                outline: none;
+                font-size: 16px;
+                padding: 8px;
+                font-family: sans-serif;
+                margin-top: 15px;
+            }
+
+            .add_comment .edit:focus
+            {
+                border: 1px solid #d4d4d4;
+            }
+
+            .add_comment .commit
+            {
+                align-self: flex-end;
+                width: 82px;
+                height: 32px;
+                background-color: #8bc34a;
+                color: white;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 14px;
+                margin-top: 15px;
+            }
+
+            /*.add_comment .commit p
+            {
+                font-size: 14px;
+                color: white;
+            }*/
+
+            .add_comment .commit:hover
+            {
+                cursor: pointer;
+            }
         </style>
     </head>
     <body>
@@ -588,7 +658,7 @@
                             <span>|</span>
                             <span>共{{comments.length}}条评论</span>
                         </div>
-                        <a v-on:click="addComment">我来说两句</a>
+                        <a href="#bottom">我来说两句</a>
                     </div>
                     <!--评论列表项-->
                     <div v-if="comments.length > 0 && users.length > 0" v-for="(comment, index) in comments" class="comment_item">
@@ -602,11 +672,18 @@
                         </div>
                     </div>
                     <!--空白页-->
-                    <div class="blank_view" v-if="comments.length === 0">
-                        <a class="new_comment" href="">
+                    <!--<div class="blank_view" v-if="comments.length === 0">
+                        <a class="new_comment" href="#bottom">
                             <img src="./images/edit.png"/>
                         </a>
                         <p>快来说两句，抢沙发</p>
+                    </div>-->
+                    <!--编辑区-->
+                    <div class="add_comment">
+                        <p>发表评论</p>
+                        <textarea class="edit" placeholder="写点什么吧..." v-model="commentText"></textarea>
+                        <a class="commit" v-if="comments.length > 0" v-on:click="addComment">提交</a>
+                        <a class="commit" v-if="comments.length === 0" v-on:click="addComment">抢沙发</a>
                     </div>
                 </div>
                 <!--同类推荐-->
@@ -628,5 +705,7 @@
                 </div>
             </div>
         </div>
+        <!--页底标记-->
+        <a id="bottom" ></a>
     </body>
 </html>
