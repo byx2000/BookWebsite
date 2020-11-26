@@ -66,16 +66,18 @@ $(function()
                     {
                         app.comments = comments;
 
-                        for (let comment of comments)
+                        app.users = new Array(comments.length);
+                        
+                        for (let i = 0; i < comments.length; ++i)
                         {
                             // 获取用户信息
                             queryUsers(
                                 {
-                                    userId: comment.userId
+                                    userId: comments[i].userId
                                 },
                                 function(users)
                                 {
-                                    app.users.push(users[0]);
+                                    app.users[i] = users[0]
                                 }
                             );
                         }
