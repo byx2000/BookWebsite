@@ -78,6 +78,8 @@ $(function()
                                 function(users)
                                 {
                                     app.users[i] = users[0];
+                                    //console.log(JSON.stringify(users[0], null, '\t'));
+                                    //console.log(JSON.stringify(app.users, null, '\t'));
                                 }
                             );
                         }

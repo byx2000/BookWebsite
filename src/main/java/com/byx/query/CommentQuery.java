@@ -7,6 +7,8 @@ public class CommentQuery extends Query
 {
     private Integer bookId = null;
     private Integer userId = null;
+    private Integer pageSize = null;
+    private Integer currentPage = null;
 
     public Integer getBookId()
     {
@@ -28,6 +30,26 @@ public class CommentQuery extends Query
         this.userId = userId;
     }
 
+    public Integer getPageSize()
+    {
+        return pageSize;
+    }
+
+    public void setPageSize(Integer pageSize)
+    {
+        this.pageSize = pageSize;
+    }
+
+    public Integer getCurrentPage()
+    {
+        return currentPage;
+    }
+
+    public void setCurrentPage(Integer currentPage)
+    {
+        this.currentPage = currentPage;
+    }
+
     @Override
     protected void customizeQuery()
     {
@@ -36,6 +58,12 @@ public class CommentQuery extends Query
 
         if (userId != null)
             addWhereCondition("userId == ?", userId);
+
+        if (pageSize != null && currentPage != null)
+        {
+            addLimit(pageSize);
+            addOffset(pageSize * (currentPage - 1));
+        }
 
         addOrderCondition("time DESC");
     }

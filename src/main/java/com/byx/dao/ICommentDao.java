@@ -11,8 +11,15 @@ import java.util.List;
 public interface ICommentDao
 {
     /**
+     * 查询满足条件的评论数量
+     * @param query 查询条件
+     * @return 结果总数，若查询失败，返回-1
+     */
+    int count(CommentQuery query);
+
+    /**
      * 根据条件查询评论
-     * @param query 查询条件封装类
+     * @param query 查询条件
      * @return 查询结果
      */
     List<Comment> query(CommentQuery query);

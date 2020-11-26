@@ -661,18 +661,19 @@
                         <a href="#bottom">我来说两句</a>
                     </div>
                     <!--评论列表项-->
-                    <!--v-if="users[index] !== undefined"-->
-                    <div v-if="comments.length > 0 && users.length > 0 && users[index] !== undefined && users[index] !== null" 
-                         v-for="(comment, index) in comments" class="comment_item">
-                        <img class="avatar" v-bind:src="'./upload/avatar/' + users[index].id + '.jpg'"/>
-                        <div class="comment_detail">
-                            <div class="username_and_time">
-                                <p class="username">{{users[index].username}}</p>
-                                <p class="time">{{comment.time.substring(0, 11)}}</p>
-                            </div>
-                            <p class="content">{{comment.content}}</p>
-                        </div>
-                    </div>
+                    <div v-for="(comment, index) in comments" 
+                         class="comment_item"
+                         v-if="comments.length > 0 && users.length > 0 && users[index] !== undefined && users[index] !== null" >
+                       <img class="avatar" 
+                            v-bind:src="'./upload/avatar/' + users[index].id + '.jpg'"/>
+                       <div class="comment_detail">
+                           <div class="username_and_time">
+                               <p class="username">{{users[index].username}}</p>
+                               <p class="time">{{comment.time.substring(0, 11)}}</p>
+                           </div>
+                           <p class="content">{{comment.content}}</p>
+                       </div>                        
+                   </div>
                     <!--空白页-->
                     <!--<div class="blank_view" v-if="comments.length === 0">
                         <a class="new_comment" href="#bottom">
