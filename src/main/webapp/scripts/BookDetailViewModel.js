@@ -77,7 +77,7 @@ $(function()
                                 },
                                 function(users)
                                 {
-                                    app.users[i] = users[0]
+                                    app.users[i] = users[0];
                                 }
                             );
                         }
