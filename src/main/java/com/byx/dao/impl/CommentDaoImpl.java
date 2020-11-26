@@ -2,7 +2,6 @@ package com.byx.dao.impl;
 
 import com.byx.dao.ICommentDao;
 import com.byx.domain.Comment;
-import com.byx.handler.ResultSetToInt;
 import com.byx.handler.ResultSetToList;
 import com.byx.handler.ResultSetToSingle;
 import com.byx.query.CommentQuery;

@@ -216,9 +216,11 @@
         </div>
         <!--欢迎信息-->
         <div class="user_info" v-if="user !== null">
-            <img class="avatar" 
-                 v-bind:src="'./upload/avatar/' + user.id + '.jpg'"
-                 onerror="javascript:this.src='./upload/avatar/default.png';"/>
+            <a href="./user_page.html?tab=my_comments">
+                <img class="avatar" 
+                     v-bind:src="'./upload/avatar/' + user.id + '.jpg'"
+                     onerror="javascript:this.src='./upload/avatar/default.png';"/>
+            </a>
             <span class="username">{{user.username}}</span>
             <a class="logout" v-on:click="logout">注销</a>
         </div>

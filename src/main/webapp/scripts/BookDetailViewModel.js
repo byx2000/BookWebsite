@@ -77,7 +77,9 @@ $(function()
                                 },
                                 function(users)
                                 {
-                                    app.users[i] = users[0];
+                                    // 这里不能用app.users[i] = users[0];
+                                    // 因为这样会导致Vue无法及时更新视图
+                                    app.users.splice(i, 1, users[0]);
                                     //console.log(JSON.stringify(users[0], null, '\t'));
                                     //console.log(JSON.stringify(app.users, null, '\t'));
                                 }
